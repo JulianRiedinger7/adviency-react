@@ -37,7 +37,7 @@ const GiftForm = ({ gifts, addGift, changeModalOpen }) => {
 	return (
 		<>
 			<form
-				className=" flex flex-col p-10 flex-wrap gap-5 absolute w-[320px] right-10 bottom-44 lg:left-96 lg:w-[700px] bg-white rounded-xl shadowx-xl"
+				className=" flex flex-col p-10 flex-wrap gap-5 absolute min-h-[60vh] w-[320px] right-10 bottom-44 lg:left-96 lg:w-[700px] bg-white rounded-xl shadowx-xl"
 				onSubmit={handleSubmit}
 			>
 				<label htmlFor="regalo">Completa la Info de tu regalo</label>
