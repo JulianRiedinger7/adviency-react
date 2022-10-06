@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useGiftContext } from '../context/GiftContext';
 
-const GiftForm = ({ gifts, addGift, changeModalOpen }) => {
+const GiftForm = () => {
+	const { gifts, changeModalOpen, addGift } = useGiftContext();
+
 	const [error, setError] = useState(null);
 
 	const [giftInfo, setGiftInfo] = useState({
