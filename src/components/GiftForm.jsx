@@ -2,34 +2,15 @@ import React, { useState } from 'react';
 import { useGiftContext } from '../context/GiftContext';
 
 const GiftForm = () => {
-	const { gifts, changeModalOpen, addGift } = useGiftContext();
+	const { changeModalOpen, addGift, handleInputChange, giftInfo } =
+		useGiftContext();
 
 	const [error, setError] = useState(null);
-
-	const [giftInfo, setGiftInfo] = useState({
-		nombre: '',
-		to: '',
-		quantity: 1,
-		image: '',
-	});
-
-	const handleChange = (evt) => {
-		setGiftInfo({
-			...giftInfo,
-			[evt.target.name]: evt.target.value,
-		});
-	};
 
 	const handleSubmit = (evt) => {
 		evt.preventDefault();
 		if (giftInfo.nombre === '') {
 			setError('Es necesario ingresar un regalo');
-		} else if (
-			gifts.some(
-				(gift) => gift.nombre.toLowerCase() === giftInfo.nombre.toLowerCase()
-			)
-		) {
-			setError('Ese regalo ya esta en la lista');
 		} else {
 			addGift(giftInfo);
 			changeModalOpen();
@@ -50,14 +31,14 @@ const GiftForm = () => {
 				id="regalo"
 				name="nombre"
 				value={giftInfo.nombre}
-				onChange={handleChange}
+				onChange={handleInputChange}
 			/>
 			<input
 				type="text"
 				className="p-2 shadow-lg rounded-lg w-full"
 				placeholder="Destinatario..."
 				name="to"
-				onChange={handleChange}
+				onChange={handleInputChange}
 				value={giftInfo.to}
 			/>
 			<input
@@ -67,7 +48,7 @@ const GiftForm = () => {
 				name="quantity"
 				min={1}
 				max={100}
-				onChange={handleChange}
+				onChange={handleInputChange}
 			/>
 			<input
 				type="search"
@@ -75,7 +56,7 @@ const GiftForm = () => {
 				placeholder="https://image.png"
 				value={giftInfo.image}
 				name="image"
-				onChange={handleChange}
+				onChange={handleInputChange}
 				required
 			/>
 
